@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cosmos.base.tendermint.v1beta1;
+
+import "proto/third_party/tendermint/types/block.proto";
+import "proto/third_party/tendermint/types/types.proto";
+import "proto/third_party/tendermint/types/evidence.proto";
+import "proto/third_party/tendermint/crypto/proof.proto";
+import "proto/third_party/tendermint/crypto/keys.proto";
+import "proto/third_party/tendermint/version/types.proto";
+import "proto/third_party/tendermint/types/validator.proto";
+
+service Service {
+  // GetLatestBlock returns the latest block.
+  rpc GetLatestBlock(GetLatestBlockRequest) returns (GetLatestBlockResponse) {
+    option (google.api.http).get = "/cosmos/base/tendermint/v1beta1/blocks/latest";
+  }
+}
+
+// GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method.
+message GetLatestBlockRequest {}
+
+// GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.
+message GetLatestBlockResponse {
+  BlockID block_id = 1;
+  Block   block    = 2;
+}
+
